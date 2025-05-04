@@ -1,0 +1,60 @@
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: #999;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.tab-btn:hover {
+    color: #fff;
+}
+
+.tab-btn.active {
+    color: #fff;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #2196F3;
+    /* Màu xanh dương giống ảnh */
+    border-radius: 1px;
+}
+
+.tab-container .tab-btn {
+    background-color: #2A2A3D;
+    /* Nền mặc định */
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab-container .tab-btn.active {
+    background-color: #383850;
+    /* Màu đậm hơn khi active */
+    border-bottom: 2px solid #00aaff;
+    /* Gạch dưới màu xanh */
+}
+.title{
+    background-color: #2a3144;
+    color: #fff;
+    height: 40px;
+    padding: 6px 20px;
+    position: relative;
+}
+.title span{
+    display: block;
+    text-align: center;
+}
