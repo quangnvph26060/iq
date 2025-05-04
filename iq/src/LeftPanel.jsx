@@ -70,7 +70,6 @@ const LeftPanel = () => {
                                 className="form-control d-flex justify-content-between align-items-center text-white"
                                 style={{
                                     backgroundColor: '#2A2A3D',
-                                    border: 'none',
                                     height: '36px',
                                     width: '160px',
                                     padding: '0 10px 0 8px',
