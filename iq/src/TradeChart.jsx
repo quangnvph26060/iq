@@ -1,42 +1,41 @@
 import React, { useEffect, useRef } from 'react';
 
 const TradeChart = () => {
-  const chartContainer = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    if (chartContainer.current && !chartContainer.current.innerHTML) {
-      const script = document.createElement('script');
-      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
-      script.type = 'text/javascript';
-      script.async = true;
-      script.innerHTML = JSON.stringify({
-        "symbol": "FX:EURUSD",
-        "width": "100%",
-        "height": "100%",
-        "locale": "en",
-        "dateRange": "1D",
-        "colorTheme": "dark",
-        "trendLineColor": "#37a6ef",
-        "underLineColor": "rgba(55, 166, 239, 0.15)",
-        "isTransparent": false,
-        "autosize": true,
-        "largeChartUrl": ""
-      });
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/tv.js";
+    script.async = true;
+    script.onload = () => {
+      if (window.TradingView) {
+        new window.TradingView.widget({
+          container_id: "tv_chart_container",
+          width: "100%",
+          height: 500,
+          symbol: "NASDAQ:AAPL",
+          interval: "D",
+          timezone: "Etc/UTC",
+          theme: "dark",
+          style: "1",
+          locale: "en",
+          toolbar_bg: "#f1f3f6",
+          enable_publishing: false,
+          allow_symbol_change: true,
+        });
+      }
+    };
 
-      chartContainer.current.appendChild(script);
-    }
+    containerRef.current.appendChild(script);
+
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.innerHTML = "";
+      }
+    };
   }, []);
 
-  return (
-    <div className="flex-grow-1 bg-secondary text-white p-0 vh-100">
-      <div
-        className="bg-dark rounded"
-        style={{ height: '100vh', overflow: 'hidden' }}
-      >
-        <div ref={chartContainer} style={{ width: '100%', height: '100%' }} />
-      </div>
-    </div>
-  );
+  return <div id="tv_chart_container" ref={containerRef} />;
 };
 
 export default TradeChart;
