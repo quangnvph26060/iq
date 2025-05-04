@@ -1,0 +1,108 @@
+.sidebar-item {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.sidebar-item .tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    left: -10px;
+    transform: translate(-100%, -50%);
+    transition: opacity 0.2s ease;
+    z-index: 999;
+    font-size: 0.75rem;
+}
+
+.sidebar-item:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.sidebar-item .icon {
+    color: #6c757d;
+    transition: color 0.2s ease;
+}
+
+.sidebar-item:hover .icon {
+    color: #ffffff;
+}
+
+.sidebar-item .nlabel {
+    font-size: 12px;
+    color: #6c757d;
+    line-height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.sidebar-item:hover .nlabel {
+    color: #ffffff;
+}
+
+.collapsed .sidebar-item .nlabel {
+    position: absolute;
+    left: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #333;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #fff;
+    display: none;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.collapsed .sidebar-item:hover .nlabel {
+    display: block;
+    pointer-events: auto;
+}
+
+.arrow-icon {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.arrow-icon:hover {
+    transform: scale(1.2);
+}
+
+.pocket-box {
+    width: 60px;
+    height: 60px;
+    background-color: #2266e2;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.1;
+    transition: all 0.3s ease;
+}
+
+.pocket-box.collapsed {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    padding: 0;
+}
+
+.pocket-label {
+    font-size: 11px;
+}
