@@ -1,0 +1,11 @@
+.star-btn {
+    transition: background-color 0.2s ease;
+}
+
+.star-icon {
+    transition: filter 0.3s ease;
+}
+
+.star-btn:hover .star-icon {
+    filter: brightness(1.5);
+}
