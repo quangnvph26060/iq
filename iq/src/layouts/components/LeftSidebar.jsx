@@ -4,7 +4,7 @@ import {
     FaLongArrowAltLeft, FaQuestionCircle, FaComments, FaSignInAlt, FaUserPlus
 } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
+import '../../assets/styles/components/Sidebar.css';
 const LeftSidebar = ({ collapsed, toggleSidebar }) => {
     const items = [
         { label: 'Giao dịch', icon: <FaChartLine /> },

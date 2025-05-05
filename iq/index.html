@@ -1,15 +1,29 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-<div class="container-fluid h-100 p-0">
-  <div id="root"></div>
-</div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="en" class="theme-light">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + React</title>
+  <style>
+    .root {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      /* Chiều cao full màn hình */
+      background-color: #f0f2f5;
+      /* tuỳ chỉnh màu nền */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid h-100 p-0">
+    <div id="root"></div>
+  </div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

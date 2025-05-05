@@ -13,7 +13,7 @@ import {
     FaArrowCircleUp,
 
 } from 'react-icons/fa';
-import './LeftPanel.css'
+import '../../../assets/styles/components/LeftPanel.css'
 const LeftPanel = () => {
     const boxStyle = {
         backgroundColor: '#2A2A3D',

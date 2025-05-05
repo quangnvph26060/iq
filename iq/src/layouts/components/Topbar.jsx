@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaStar, FaSyncAlt,FaUserCircle  } from 'react-icons/fa';
-import './Topbar.css';
+import '../../assets/styles/components/Topbar.css';
 const Topbar = () => {
     return (
         <header className="bg-dark text-white px-3 py-2 d-flex justify-content-between align-items-center border-bottom border-secondary">

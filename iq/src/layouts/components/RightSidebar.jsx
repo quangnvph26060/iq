@@ -4,7 +4,7 @@ import {
     FaLongArrowAltRight, FaLongArrowAltLeft, FaQuestionCircle,
     FaArrowRight
 } from 'react-icons/fa';
-import "./Sidebar.css";
+import '../../assets/styles/components/Sidebar.css';
 
 const RightSidebar = ({ collapsed, toggleSidebar }) => {
     const items = [

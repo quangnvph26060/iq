@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './TradeTabs.css'; // Đảm bảo bạn tạo file CSS này
+import '../../../assets/styles/components/TradeTabs.css'; // Đảm bảo bạn tạo file CSS này
 import ClosedTrades from "./ClosedTrades";
 const TradeTabs = () => {
     const [activeTab, setActiveTab] = useState('closed');
