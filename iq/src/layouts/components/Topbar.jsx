@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaStar, FaSyncAlt, FaUserCircle } from 'react-icons/fa';
 import '../../assets/styles/components/Topbar.css';
+import BalanceBox from "../../features/auth/components/common/BalanceBox.jsx";
 import { Link } from 'react-router-dom';
 const Topbar = () => {
     return (
@@ -22,14 +23,8 @@ const Topbar = () => {
 
 
             <div className="d-flex align-items-center gap-3">
-                <div
-                    className="  fw-semibold bg-primary text-white px-3 py-1 rounded d-flex flex-column justify-content-center"
-                    style={{ fontSize: '0.75rem', width: '122px', height: '42px' }}
-                >
-                    <div>Balance 0 USDT</div>
-                    {/* <small className="text-white-50">Mở tài khoản thực</small> */}
-                </div>
-
+               
+                <BalanceBox balance={0} currency={"USDT"} />
 
                 {/* <div className="text-end">
                     <div style={{ fontSize: '0.75rem' }} className="text-white-50">QT Demo - USD</div>

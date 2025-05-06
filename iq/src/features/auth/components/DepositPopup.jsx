@@ -53,9 +53,6 @@ const DepositPopup = ({ onClose, onDeposit }) => {
                             onChange={(e) => setCurrency(e.target.value)}
                         >
                             <option value="usdt">USDT</option>
-                            <option value="btc">BTC</option>
-                            <option value="eth">ETH</option>
-                            <option value="bnb">BNB</option>
                         </select>
                     </div>
 
@@ -63,9 +60,7 @@ const DepositPopup = ({ onClose, onDeposit }) => {
                     <div className="mb-3">
                         <label htmlFor="network" className="form-label">Network</label>
                         <select className="form-select" id="network">
-                            <option>Tron</option>
-                            <option>Tron 2</option>
-                            <option>Tron 3</option>
+                            <option value="Polygon USDT">Polygon USDT</option>
                         </select>
                     </div>
 

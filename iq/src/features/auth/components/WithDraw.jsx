@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-
+import Button from "./common/Button.jsx";
+import BalanceBox from "../components/common/BalanceBox.jsx";
 import '../../../assets/styles/components/WithDraw.css';
 
 const currencyOptions = [
-  { name: 'USDT', icon: 'assets/images/usdt.png' },
-  { name: 'BTC', icon: 'assets/images/btc.png' },
-  { name: 'ETH', icon: 'assets/images/eth.png' },
-  { name: 'BNB', icon: 'assets/images/bnb.png' },
+  { name: 'USDT', icon: 'assets/images/usdt.png' }
 ];
 
 const Withdraw = () => {
@@ -23,7 +21,7 @@ const Withdraw = () => {
       <div className="card shadow-sm w-100">
         <div className="card-body">
           <div className="d-flex justify-content-between align-items-center mb-4">
-            <h5 className="card-title mb-0">Request a Withdrawal</h5>
+            <h5 className="card-title mb-0">Request a Withdrawal</h5>  <BalanceBox balance={0} currency={"USDT"} />
           </div>
           <hr />
           <form>
@@ -70,9 +68,7 @@ const Withdraw = () => {
                   value={network}
                   onChange={(e) => setNetwork(e.target.value)}
                 >
-                  <option value="tron">tron (Tron)</option>
-                  <option value="erc20">ERC20</option>
-                  <option value="bep20">BEP20</option>
+                  <option value="Polygon USDT">Polygon USDT</option>
                 </select>
               </div>
             </div>
@@ -89,6 +85,7 @@ const Withdraw = () => {
                 placeholder="New Address"
               />
             </div>
+            <Button  text="Xác nhận"  className="btn-primary ms-2" /> 
           </form>
         </div>
       </div>
