@@ -3,7 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const RequireNoAuth = ({ children }) => {
   const { token } = useAuth();
-
+  
   if (token) {
     return <Navigate to="/iqplay" replace />;
   }

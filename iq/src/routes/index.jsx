@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from '../features/auth/pages/Login';
 import Register from '../features/auth/pages/Register';
 import TradePage from '../features/auth/components/TradePage';
+import DepositPopup from '../features/auth/components/DepositPopup';
 import AuthLayout from '../layouts/AuthLayout';
 import MainLayout from '../layouts/MainLayout';
 import RequireAuth from './RequireAuth';
@@ -24,12 +25,12 @@ const AppRoutes = () => {
 
             {/* Layout dành cho đã đăng nhập */}
             <Route element={
-
                 <RequireAuth>
                     <MainLayout />
                 </RequireAuth>
             }>
                 <Route path="/iqplay" element={<TradePage />} />
+                <Route path="/deposit" element={<DepositPopup />} />
             </Route>
         </Routes>
     );

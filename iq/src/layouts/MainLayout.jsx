@@ -24,7 +24,9 @@ const MainLayout = () => {
                         toggleSidebar={() => setSidebarExpanded(prev => !prev)}
                     />
                 </div>
-                <Outlet />
+                <div className="flex-grow-1">
+                    <Outlet />
+                </div>
                 <div style={{
                     width: `${sidebarWidthRight}px`,
                     flexShrink: 0,
