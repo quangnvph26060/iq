@@ -38,11 +38,18 @@ const Topbar = () => {
                         <FaSyncAlt className="ms-2 text-white-50" />
                     </div>
                 </div> */}
-
+                <Link
+                    to="/withdraw"
+                    className="btn d-flex     justify-content-center
+                     align-items-center btn-danger btn-sm px-3 fw-semibold"
+                    style={{ fontSize: '0.75rem', width: '122px', height: '42px' }}
+                >
+                    RÚT TIỀN
+                </Link>
                 <Link
                     to="/deposit"
                     className="btn d-flex     justify-content-center
-    align-items-center btn-success btn-sm px-3 fw-semibold"
+                     align-items-center btn-success btn-sm px-3 fw-semibold"
                     style={{ fontSize: '0.75rem', width: '122px', height: '42px' }}
                 >
                     NẠP TIỀN

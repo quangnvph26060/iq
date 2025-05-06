@@ -1,0 +1,42 @@
+.crypto-address {
+    word-break: break-word;
+    font-family: monospace;
+}
+
+option {
+    padding-left: 25px;
+}
+
+@media (max-width: 768px) {
+    .qr-col {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+/* .form-select-with-icons {
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 20px 20px;
+    padding-left: 5px;
+    background-origin: content-box;
+} */
+.site-content-in{
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    background-color: #fff;
+    border-radius: 10px;
+    height: auto !important;
+    justify-content: center;
+    margin: 83px auto 20px;
+    max-width: 600px;
+    padding-top: 4px;
+    width: 100%
+}
+

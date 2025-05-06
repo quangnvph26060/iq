@@ -1,79 +1,105 @@
 
-import React, { useState } from 'react';
 
+import React, { useState, useEffect } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 
-// import './Popup.css';
+import '../../../assets/styles/components/DepositPopup.css';
 
 
 
 const DepositPopup = ({ onClose, onDeposit }) => {
-    const [amount, setAmount] = useState('');
-    const [address, setAddress] = useState('');
+    const [currency, setCurrency] = useState('usdt');
+    const [qrUrl, setQrUrl] = useState('');
+    const [address, setAddress] = useState('TFJdhryCMsQYvHo7VzLhMoykBMmEzWTu9');
 
-    const [showQR, setShowQR] = useState(false);
+    // const currencyIcons = {
+    //     usdt: 'https://cryptologos.cc/logos/tether-usdt-logo.png',
+    //     btc: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
+    //     eth: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
+    //     bnb: 'https://cryptologos.cc/logos/bnb-bnb-logo.png',
+    // };
 
+    useEffect(() => {
+        // const iconUrl = currencyIcons[currency];
+        // const selectEl = document.getElementById('currency');
+        // if (selectEl) {
+        //     selectEl.style.backgroundImage = `url(${iconUrl})`;
+        // }
 
-    //Xu li logic xac nhan vi o day 
-    const handleSubmit = () => {
-        const depositAmount = parseFloat(amount);
-        if (!address.trim()) {
-            alert('Vui lòng nhập địa chỉ ví.');
-            return;
-        }
-        if (isNaN(depositAmount) || depositAmount <= 0) {
-            alert('Số tiền không hợp lệ');
-            return;
-        }
+        // Update QR code when currency changes
+        setQrUrl(`https://api.qrserver.com/v1/create-qr-code/?data=${address}&size=200x200`);
+    }, [currency, address]);
 
-        if (!address || !amount || parseFloat(amount) <= 0) {
-            alert('Vui lòng nhập đầy đủ địa chỉ ví và số tiền hợp lệ.');
-            return;
-        }
-
-        setShowQR(true); // Hiện QR khi bấm xác nhận
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(address).then(() => {
+            alert('Copied to clipboard!');
+        });
     };
-    //address dia chi vi nhan
-    let address_vinhan = '0x51b62F113f05c8Be2E40Cb589a23F3ea85D35356'
-    const qrValue = `ethereum:${address_vinhan}?value=${amount}`; // Định dạng URI cơ bản (có thể thay đổi theo chuẩn mạng)
-
-
     return (
-        <div className="popuplogin">
-            <h3>Nạp tiền USDT</h3>
+        <div className=" site-content-in">
+            <div className="  card shadow-lg">
+                <div className="card-body">
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                        <h4 className="card-title">Deposit Funds</h4>
+                    </div>
 
-            <input
-                type="text"
-                placeholder="Nhập địa chỉ ví (from address)"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
 
-            />
+                    <div className="mb-3">
+                        <label htmlFor="currency" className="form-label">Currency</label>
+                        <select
+                            id="currency"
+                            className="form-select form-select-with-icons"
+                            value={currency}
+                            onChange={(e) => setCurrency(e.target.value)}
+                        >
+                            <option value="usdt">USDT</option>
+                            <option value="btc">BTC</option>
+                            <option value="eth">ETH</option>
+                            <option value="bnb">BNB</option>
+                        </select>
+                    </div>
 
-            <input
-                type="number"
-                placeholder="Nhập số tiền"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                style={{ marginTop: 10 }}
-            />
 
-            <div style={{ marginTop: 10 }}>
-                <button onClick={handleSubmit}>Xác nhận</button>
-                <button onClick={onClose}>Hủy</button>
-            </div>
+                    <div className="mb-3">
+                        <label htmlFor="network" className="form-label">Network</label>
+                        <select className="form-select" id="network">
+                            <option>Tron</option>
+                            <option>Tron 2</option>
+                            <option>Tron 3</option>
+                        </select>
+                    </div>
 
-            {showQR && (
-                <div className="qr-container">
-                    <p>Quét mã để gửi USDT:</p>
-                    <QRCodeCanvas value={qrValue} size={180} />
-                    <p className="wallet-address">{address_vinhan}</p> {/* Hiển thị ví nhận */}
 
-                    {/* Trạng thái chờ nạp tiền */}
-                    <p className="pending-text">⏳ Đang chờ bạn gửi USDT...</p>
+                    <div className="alert alert-primary small" role="alert">
+                        ⚠ <strong>Do not send assets other than USD Tether on Tron to this address!</strong> Any other assets sent to this address will be lost.
+                    </div>
+
+
+                    <div className="row align-items-center mt-4">
+                        <div className="col-md-4 qr-col text-center">
+                            <img src={qrUrl || null} alt="QR Code" className="img-fluid" />
+                        </div>
+                        <div className="col-md-8">
+                            <p className="mb-1 fw-bold">Your Tether deposit address:</p>
+                            <p className="crypto-address text-break">{address}</p>
+                            <button className="btn btn-outline-primary btn-sm" onClick={copyToClipboard}>
+                                Copy to clipboard
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div className="text-muted small mt-4">
+                        <h6>Important notes</h6>
+                        <ul className="mb-0">
+                            <li>Do not send assets other than USDT Tether on Tron to this address.</li>
+                            <li>The minimum deposit amount is 100 USDT.</li>
+                            <li>Your deposit will be credited after 10 confirmations on the Tron network.</li>
+                        </ul>
+                    </div>
                 </div>
-            )}
-
+            </div>
         </div>
     );
 };

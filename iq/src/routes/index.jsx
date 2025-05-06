@@ -5,6 +5,7 @@ import Login from '../features/auth/pages/Login';
 import Register from '../features/auth/pages/Register';
 import TradePage from '../features/auth/components/TradePage';
 import DepositPopup from '../features/auth/components/DepositPopup';
+import WithDraw from '../features/auth/components/WithDraw';
 import AuthLayout from '../layouts/AuthLayout';
 import MainLayout from '../layouts/MainLayout';
 import RequireAuth from './RequireAuth';
@@ -30,7 +31,15 @@ const AppRoutes = () => {
                 </RequireAuth>
             }>
                 <Route path="/iqplay" element={<TradePage />} />
+
+            </Route>
+            <Route element={
+                <RequireAuth>
+                    <AuthLayout />
+                </RequireAuth>
+            }>
                 <Route path="/deposit" element={<DepositPopup />} />
+                <Route path="/withdraw" element={<WithDraw />} />
             </Route>
         </Routes>
     );

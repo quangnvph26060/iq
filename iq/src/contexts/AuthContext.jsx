@@ -9,14 +9,15 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const savedToken = localStorage.getItem('accessToken');
-    const savedUser = localStorage.getItem('user');
+// const savedUser = localStorage.getItem('user');
 
     if (savedToken) {
       setToken(savedToken);
       try {
-        setUser(JSON.parse(savedUser));
+       // setUser(JSON.parse(savedUser));
       } catch (e) {
         console.error('Invalid user JSON:', e);
+      //  localStorage.removeItem('user');
       }
     }
 
@@ -25,20 +26,20 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token, user) => {
     localStorage.setItem('accessToken', token);
-    localStorage.setItem('user', JSON.stringify(user));
+   // localStorage.setItem('user', JSON.stringify(user));
     setToken(token);
-    setUser(user);
+  //  setUser(user);
   };
 
   const logout = () => {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('user');
+  //  localStorage.removeItem('user');
     setToken(null);
-    setUser(null);
+  //  setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout, isAuthReady }}>
+    <AuthContext.Provider value={{ token, login, logout, isAuthReady }}>
       {children}
     </AuthContext.Provider>
   );

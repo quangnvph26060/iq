@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 const AuthLayout = () => {
     return (
-        <div style={{ minHeight: '100vh' }}>
+        <div>
             <Outlet />
         </div>
     );
