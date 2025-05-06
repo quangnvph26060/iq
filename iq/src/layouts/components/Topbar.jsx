@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaStar, FaSyncAlt, FaUserCircle } from 'react-icons/fa';
 import '../../assets/styles/components/Topbar.css';
 import BalanceBox from "../../features/auth/components/common/BalanceBox.jsx";
@@ -23,8 +23,8 @@ const Topbar = () => {
 
 
             <div className="d-flex align-items-center gap-3">
-               
-                <BalanceBox balance={0} currency={"USDT"} />
+
+                <BalanceBox  currency={"USDT"} />
 
                 {/* <div className="text-end">
                     <div style={{ fontSize: '0.75rem' }} className="text-white-50">QT Demo - USD</div>
