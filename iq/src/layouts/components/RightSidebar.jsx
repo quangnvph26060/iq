@@ -2,13 +2,15 @@ import React from 'react';
 import {
     FaSyncAlt, FaSignal, FaUsers, FaBolt, FaTrophy,
     FaLongArrowAltRight, FaLongArrowAltLeft, FaQuestionCircle,
-    FaArrowRight
+    FaArrowRight, FaUserFriends
 } from 'react-icons/fa';
 import '../../assets/styles/components/Sidebar.css';
-
-const RightSidebar = ({ collapsed, toggleSidebar }) => {
+import { useNavigate } from 'react-router-dom';
+const RightSidebar = ({ collapsed, toggleSidebar, onToggleTradeTabs }) => {
+    const navigate = useNavigate();
     const items = [
         { label: 'Giao dịch', icon: <FaSyncAlt /> },
+        { label: 'Người giới thiệu', icon: <FaUserFriends />,path: '/referrer' },
         { label: 'Tín hiệu', icon: <FaSignal /> },
         { label: 'Giao dịch Xã hội', icon: <FaUsers /> },
         { label: 'Giao dịch nhanh', icon: <FaBolt /> },
@@ -30,19 +32,23 @@ const RightSidebar = ({ collapsed, toggleSidebar }) => {
                     {items.map((item, index) => (
                         <div
                             key={index}
+                            onClick={() => {
+                                if (item.label === 'Giao dịch') {
+                                    onToggleTradeTabs?.();
+                                } else if (item.path) {
+                                    navigate(item.path);
+                                }
+                            }}
                             className="sidebar-item mt-1 nav-link flex-column d-flex align-items-center text-white px-2 py-1 hover-bg-secondary rounded"
+                            style={{ cursor: 'pointer' }}
                         >
                             <span className="me-2 icon">{item.icon}</span>
 
-                            {!collapsed && (
-                                <span className="nlabel">{item.label}</span>
-                            )}
-
-                            {collapsed && (
-                                <span className="tooltip-text">{item.label}</span>
-                            )}
+                            {!collapsed && <span className="nlabel">{item.label}</span>}
+                            {collapsed && <span className="tooltip-text">{item.label}</span>}
                         </div>
                     ))}
+
                 </nav>
             </div>
 

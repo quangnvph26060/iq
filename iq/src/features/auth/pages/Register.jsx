@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../../../assets/styles/components/Login.css';
 import { registerApi } from '../api/authApi';
@@ -9,6 +9,17 @@ function Register() {
         email: '',
         password: '',
     });
+    const [userId, setuserId] = useState();
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('refId');
+        if (id) {
+            setuserId(id);
+            console.log(id);
+          
+        }
+      }, []);
+
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const handleChange = (e) => {

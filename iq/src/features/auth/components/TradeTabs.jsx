@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../../assets/styles/components/TradeTabs.css'; // Đảm bảo bạn tạo file CSS này
 import ClosedTrades from "./ClosedTrades";
+import TradeOpened from "./TradeOpened";
 const TradeTabs = () => {
     const [activeTab, setActiveTab] = useState('closed');
 
@@ -28,7 +29,7 @@ const TradeTabs = () => {
 
             {/* Nội dung tab */}
             <div className="text-center  text-white">
-                {activeTab === 'open' ? 'Không có giao dịch mở' : <ClosedTrades/>}
+                {activeTab === 'open' ? <TradeOpened /> : <ClosedTrades/>}
             </div>
         </div>
     );

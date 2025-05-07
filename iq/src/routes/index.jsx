@@ -10,6 +10,8 @@ import AuthLayout from '../layouts/AuthLayout';
 import MainLayout from '../layouts/MainLayout';
 import RequireAuth from './RequireAuth';
 import RequireNoAuth from './RequireNoAuth';
+import ReferrerTable from "../features/auth/components/tables/ReferrerTable";
+import PageNotFound from '../features/auth/components/PageNotFound';
 const AppRoutes = () => {
 
     return (
@@ -30,6 +32,7 @@ const AppRoutes = () => {
                     <MainLayout />
                 </RequireAuth>
             }>
+                <Route path="/referrer" element={<ReferrerTable />}/>
                 <Route path="/iqplay" element={<TradePage />} />
 
             </Route>
@@ -41,6 +44,7 @@ const AppRoutes = () => {
                 <Route path="/deposit" element={<DepositPopup />} />
                 <Route path="/withdraw" element={<WithDraw />} />
             </Route>
+            <Route path="*" element={<PageNotFound />} />
         </Routes>
     );
 };

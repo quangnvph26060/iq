@@ -6,7 +6,7 @@ const fz = {
     fontSize: '13px'
 };
 
-const ClosedTrades = () => {
+const TradeOpened = () => {
     const { trades } = useAuth();
     const date = trades.length > 0 ? trades[0].date : '';
    
@@ -48,4 +48,4 @@ const ClosedTrades = () => {
     );
 };
 
-export default ClosedTrades;
+export default TradeOpened;

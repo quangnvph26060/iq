@@ -10,6 +10,8 @@ const MainLayout = () => {
     const [isRightSidebarExpanded, setRightSidebarExpanded] = useState(true);
     const sidebarWidthLeft = isSidebarExpanded ? 90 : 50;
     const sidebarWidthRight = isRightSidebarExpanded ? 90 : 50;
+
+    const [showTradeTabs, setShowTradeTabs] = useState(true); 
     return (
         <div className="vh-100 d-flex flex-column bg-dark text-white">
             <Topbar />
@@ -25,7 +27,7 @@ const MainLayout = () => {
                     />
                 </div>
                 <div className="flex-grow-1">
-                    <Outlet />
+                <Outlet context={{ showTradeTabs }} />
                 </div>
                 <div style={{
                     width: `${sidebarWidthRight}px`,
@@ -35,6 +37,7 @@ const MainLayout = () => {
                     <RightSidebar
                         collapsed={!isRightSidebarExpanded}
                         toggleSidebar={() => setRightSidebarExpanded(prev => !prev)}
+                        onToggleTradeTabs={() => setShowTradeTabs(prev => !prev)} 
                     />
                 </div>
             </div>
