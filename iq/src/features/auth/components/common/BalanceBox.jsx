@@ -1,9 +1,18 @@
 
 import React, { useEffect, useState } from 'react';
-import axiosClient from '../../../../api/axiosClient.js';
+import axios from 'axios';
 const BalanceBox = ({ balance = 0, currency = 'USDT', width = '122px', height = '42px' }) => {
   const [walletData, setWalletData] = useState(null);
-  const WalletApi = () => axiosClient.get('http://14.225.207.29:3003/wallet');
+  const WalletApi = async () => {
+    const token = localStorage.getItem('accessToken');
+  
+    return axios.get('http://14.225.207.29:3003/wallet', {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` })
+      }
+    });
+  };
   const fetchWallet = async () => {
       try {
           const response = await WalletApi();
