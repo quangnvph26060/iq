@@ -36,7 +36,7 @@ const BalanceBox = ({ balance = 0, currency = 'USDT', width = '122px', height = 
       height,                      
     }}
   >
-    <div>Balance {walletData?.['balance']} {currency}</div>
+    <div>Balance {walletData?.['balance'] ?? 0} {currency}</div>
   </div>
   
   );

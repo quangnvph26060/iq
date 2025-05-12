@@ -1,7 +1,8 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { QRCodeCanvas } from 'qrcode.react';
+
+import { useNavigate } from 'react-router-dom';
 
 import '../../../assets/styles/components/DepositPopup.css';
 
@@ -10,25 +11,24 @@ import '../../../assets/styles/components/DepositPopup.css';
 const DepositPopup = ({ onClose, onDeposit }) => {
     const [currency, setCurrency] = useState('usdt');
     const [qrUrl, setQrUrl] = useState('');
-    const [address, setAddress] = useState('TFJdhryCMsQYvHo7VzLhMoykBMmEzWTu9');
+    const [address, setAddress] = useState('');
+    const [network, setNetwork] = useState("Polygon USDT");
+    const [usdt, setUsdt] = useState("");
 
-    // const currencyIcons = {
-    //     usdt: 'https://cryptologos.cc/logos/tether-usdt-logo.png',
-    //     btc: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
-    //     eth: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
-    //     bnb: 'https://cryptologos.cc/logos/bnb-bnb-logo.png',
-    // };
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        // const iconUrl = currencyIcons[currency];
-        // const selectEl = document.getElementById('currency');
-        // if (selectEl) {
-        //     selectEl.style.backgroundImage = `url(${iconUrl})`;
+   const handleSubmit = (e) => {
+        e.preventDefault();  // Ngăn form tự động submit
+       
+        // if (usdt < 100) {
+        //     alert("Số USDT tối thiểu là 100.");
+        //     return;
         // }
+        localStorage.setItem("depositInfo", JSON.stringify({ address, usdt }));
+        navigate(`/desposit_load`);
+    };
 
-        // Update QR code when currency changes
-        setQrUrl(`https://api.qrserver.com/v1/create-qr-code/?data=${address}&size=200x200`);
-    }, [currency, address]);
+
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(address).then(() => {
@@ -38,39 +38,72 @@ const DepositPopup = ({ onClose, onDeposit }) => {
     return (
         <div className=" site-content-in">
             <div className="  card shadow-lg">
-                <div className="card-body">
+                <div className="card-body d-flex  flex-column">
                     <div className="d-flex justify-content-between align-items-center mb-3">
                         <h4 className="card-title">Deposit Funds</h4>
                     </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label htmlFor="currency" className="form-label">Currency</label>
+                            <select
+                                id="currency"
+                                className="form-select form-select-with-icons"
+                                value={currency}
+                                onChange={(e) => setCurrency(e.target.value)}
+                            >
+                                <option value="usdt">USDT</option>
+                            </select>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="network" className="form-label">Network</label>
+                            <select
+                                className="form-select"
+                                id="network"
+                                value={network}
+                                onChange={(e) => setNetwork(e.target.value)}
+                            >
+                                <option value="Polygon USDT">Polygon USDT</option>
+                            </select>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="address" className="form-label">Địa chỉ ví</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="address"
+                                placeholder="Nhập địa chỉ ví"
+                                value={address}
+                                required
+                                onChange={(e) => setAddress(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="usdt" className="form-label">USDT</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="usdt"
+                                placeholder="Nhập USDT"
+                                min="100"
+                                step="any"
+                                value={usdt}
+                                required
+                                onChange={(e) => setUsdt(e.target.value)}
+                            />
+                        </div>
 
-
-                    <div className="mb-3">
-                        <label htmlFor="currency" className="form-label">Currency</label>
-                        <select
-                            id="currency"
-                            className="form-select form-select-with-icons"
-                            value={currency}
-                            onChange={(e) => setCurrency(e.target.value)}
-                        >
-                            <option value="usdt">USDT</option>
-                        </select>
-                    </div>
-
-
-                    <div className="mb-3">
-                        <label htmlFor="network" className="form-label">Network</label>
-                        <select className="form-select" id="network">
-                            <option value="Polygon USDT">Polygon USDT</option>
-                        </select>
-                    </div>
-
-
-                    <div className="alert alert-primary small" role="alert">
+                        <div className="mb-3">
+                            <button type="submit" className="btn btn-primary float-end">
+                                Lưu
+                            </button>
+                        </div>
+                    </form>
+                    <div className="alert alert-primary small mb-3 d-none" role="alert">
                         ⚠ <strong>Do not send assets other than USD Tether on Tron to this address!</strong> Any other assets sent to this address will be lost.
                     </div>
 
 
-                    <div className="row align-items-center mt-4">
+                    <div className="row align-items-center  d-none">
                         <div className="col-md-4 qr-col text-center">
                             <img src={qrUrl || null} alt="QR Code" className="img-fluid" />
                         </div>
@@ -83,9 +116,10 @@ const DepositPopup = ({ onClose, onDeposit }) => {
                         </div>
                     </div>
 
-                    <hr />
 
-                    <div className="text-muted small mt-4">
+
+                    <div className="text-muted small">
+                        <hr />
                         <h6>Important notes</h6>
                         <ul className="mb-0">
                             <li>Do not send assets other than USDT Tether on Tron to this address.</li>

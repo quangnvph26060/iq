@@ -12,6 +12,7 @@ import RequireAuth from './RequireAuth';
 import RequireNoAuth from './RequireNoAuth';
 import ReferrerTable from "../features/auth/components/tables/ReferrerTable";
 import PageNotFound from '../features/auth/components/PageNotFound';
+import DepositLoad from '../features/auth/components/DepositLoad';
 const AppRoutes = () => {
 
     return (
@@ -42,6 +43,7 @@ const AppRoutes = () => {
                 </RequireAuth>
             }>
                 <Route path="/deposit" element={<DepositPopup />} />
+                 <Route path="/desposit_load" element={<DepositLoad />} />
                 <Route path="/withdraw" element={<WithDraw />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
